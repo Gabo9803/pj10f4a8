@@ -1,0 +1,41 @@
+version: '3'
+services:
+  sMysql:
+    image: mysql:9.1
+    container_name: cMysql
+    ports:
+      - "33306:3306"
+    volumes:
+      - ./sql:/sql
+      - vDades:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=bdPj10f4a8
+      - MYSQL_USER=asix2
+      - MYSQL_PASSWORD=FjeClot2425#
+      - MYSQL_ROOT_PASSWORD=FjeClot2425@
+    networks:
+      - xPj10f4a8
+
+  sWebApp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: iwebapp:1.0
+    container_name: cWebApp
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - sMysql
+    networks:
+      - xPj10f4a8
+
+networks:
+  xPj10f4a8:
+    driver: bridge
+    name: xarxa
+
+volumes:
+  vDades:
+    name: dades

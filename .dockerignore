@@ -1,0 +1,5 @@
+.dockerignore
+.git
+app
+sql
+docker-compose.yml
